@@ -16,9 +16,11 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock VerticalAlignment="Bottom" Margin="10 0 0 0" FontFamily="Helvetica" Text="Open tasks:" FontSize="25"></TextBlock>
-        <Button Width="75" Height="25" Margin="10 10 0 0" Content="Add task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
-        <Button Width="75" Height="25" Margin="110 10 0 0" Content="Delete task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <Button Width="85" Height="25" Margin="10 10 0 0" Content="Add task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <Button Width="85" Height="25" Margin="110 10 0 0" Content="Delete task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <Button Width="85" Height="25" Margin="210 10 0 0" Content="Complete task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <Button Width="85" Height="25" Margin="310 10 0 0" Content="Add comment" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <Button Grid.ColumnSpan="2" Width="85" Height="25" Margin="410 10 0 0" Content="View comments" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <TextBlock Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Bottom" FontFamily="Helvetica" Text="Completed tasks:" FontSize="25"></TextBlock>
         <DataGrid Grid.Row="1" Margin="10"></DataGrid>
         <DataGrid Grid.Row="1" Grid.Column="1" Margin="10"></DataGrid>
