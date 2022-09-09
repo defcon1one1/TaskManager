@@ -19,7 +19,7 @@ namespace TaskManager.Entities
         private string GetStatus()
         {
             using TaskManagerContext db = new(TaskManagerContext.connectionString);
-            var status = (from s in db.Statuses where Id == this.StatusId select s.Name).FirstOrDefault();
+            var status = (from s in db.Statuses where s.Id == this.StatusId select s.Name).FirstOrDefault();
             return status;
         }
 

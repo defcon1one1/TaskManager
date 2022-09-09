@@ -28,31 +28,31 @@ namespace TaskManager
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection loginConnection = new SqlConnection(TaskManagerContext.connectionString);
+            SqlConnection loginConnection = new(TaskManagerContext.connectionString);
             try
             {
                 if (loginConnection.State == System.Data.ConnectionState.Closed)
                     loginConnection.Open();
                 string query = "SELECT COUNT(1) FROM Users WHERE Name=@Name AND Password=@Password";
 
-                SqlCommand sqlCmd = new SqlCommand(query, loginConnection);
-
-                sqlCmd.CommandType = System.Data.CommandType.Text;
+                SqlCommand sqlCmd = new(query, loginConnection)
+                {
+                    CommandType = System.Data.CommandType.Text
+                };
                 sqlCmd.Parameters.AddWithValue("@Name", tbxUser.Text);
                 sqlCmd.Parameters.AddWithValue("@Password", pbxPassword.Password);
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
 
                 if (count == 1)
                 {
-                    MainWindow.user = tbxUser.Text;
-                    MainWindow dashboard = new MainWindow();
-
-                    dashboard.Show();
+                    MainWindow.User = tbxUser.Text;
+                    MainWindow window = new();
+                    window.Show();
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("User or password is not correct!");
+                    MessageBox.Show("User or password is not correct");
                 }
             }
             catch (Exception ex)

@@ -19,11 +19,10 @@
         <TextBlock VerticalAlignment="Bottom" Margin="0 0 0 0" FontFamily="Helvetica" Text="Tasks:" FontSize="25"></TextBlock>
         <Button Click="AddTask_Click" Width="85" Height="25" Margin="0 0 0 0" FontFamily="Helvetica" Content="Add task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <Button Click="DeleteTask_Click" Width="85" Height="25" Margin="100 0 0 0" FontFamily="Helvetica" Content="Delete task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
-        <Button Width="85" Height="25" Margin="200 0 0 0" FontFamily="Helvetica" Content="Update task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
-        <Button Width="85" Height="25" Margin="300 0 0 0" FontFamily="Helvetica" Content="Add comment" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
-        <Button Width="100" Height="25" Margin="400 0 0 0" Content="View comments" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
-        <TextBlock Width="100" Height="25" Margin="550 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="You are logged as: "></TextBlock>
-        <TextBlock x:Name="LoggedUser" Width="100" Height="25" Margin="660 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
+            <Button Click="UpdateTask_Click" Width="85" Height="25" Margin="200 0 0 0" FontFamily="Helvetica" Content="Update task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+            <Button Width="100" Height="25" Margin="300 0 0 0" Content="View comments" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <TextBlock Width="100" Height="25" Margin="450 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="You are logged as: "></TextBlock>
+        <TextBlock x:Name="LoggedUser" Width="100" Height="25" Margin="555 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
         <DataGrid Grid.Row="1" x:Name="dgridTasks" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Id}" Header="Id" Width="65"></DataGridTextColumn>

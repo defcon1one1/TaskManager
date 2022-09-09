@@ -23,17 +23,19 @@ namespace TaskManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string user = "unknown";
+        private static string user = "unknown";
 
         public MainWindow()
         {
 
             InitializeComponent();
-            LoggedUser.Text = user;
+            LoggedUser.Text = User;
             dgridTasks.ItemsSource = GetTasks();
         }
 
-        private List<Task> GetTasks()
+        public static string User { get => user; set => user = value; }
+
+        private static List<Task> GetTasks()
         {
             List<Task> tasks = new();
             using (TaskManagerContext db = new(TaskManagerContext.connectionString))
@@ -45,9 +47,9 @@ namespace TaskManager
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            AddTaskWindow addTaskWindow = new();
-            addTaskWindow.tbxAuthor.Text = user;
-            addTaskWindow.ShowDialog();
+            AddTaskWindow window = new();
+            window.tbxAuthor.Text = User;
+            window.ShowDialog();
             dgridTasks.ItemsSource = GetTasks();
         }
 
@@ -57,13 +59,34 @@ namespace TaskManager
             {
                 try
                 {
-                    using (TaskManagerContext db = new(TaskManagerContext.connectionString))
-                    {
-                        Task task = (Task)dgridTasks.SelectedItem;
-                        db.Remove(task);
-                        db.SaveChanges();
-                        dgridTasks.ItemsSource = GetTasks();
-                    }
+                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                    Task task = (Task)dgridTasks.SelectedItem;
+                    db.Remove(task);
+                    db.SaveChanges();
+                    dgridTasks.ItemsSource = GetTasks();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void UpdateTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgridTasks.SelectedItem != null)
+            {
+                try
+                {
+                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                    Task task = (Task)dgridTasks.SelectedItem;
+                    UpdateTaskWindow window = new();
+                    window.tbxId.Text = task.Id.ToString();
+                    window.tbxTaskName.Text = task.Name;
+                    window.cmbStatus.SelectedIndex = task.StatusId;
+                    window.tbxAuthor.Text = (from u in db.Users where u.Id == task.UserId select u.Name).FirstOrDefault();
+                    window.ShowDialog();
+                    dgridTasks.ItemsSource = GetTasks();
                 }
                 catch (Exception ex)
                 {

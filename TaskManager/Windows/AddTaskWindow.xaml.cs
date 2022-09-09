@@ -36,7 +36,7 @@ namespace TaskManager.Windows
                     Task task = new()
                     {
                         Name = tbxTaskName.Text,
-                        StatusId = 1,
+                        StatusId = 0,
                         DateCreated = DateTime.Today,
                         UserId = (from u in db.Users where u.Name == tbxAuthor.Text select u.Id).FirstOrDefault()
                     };
@@ -45,10 +45,9 @@ namespace TaskManager.Windows
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Invalid input");
                 }
-                
-                this.Close();
+                Close();
             }
         }
 
