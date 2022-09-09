@@ -10,6 +10,7 @@ namespace TaskManager.Entities
     {
         public int Id { get; set; }
         public int TaskId { get; set; }
+        public string Task { get => GetTask(); }
         public string Contents { get; set; }
         public DateTime DateAdded { get; set; }
         public int UserId { get; set; }
@@ -20,6 +21,13 @@ namespace TaskManager.Entities
             using TaskManagerContext db = new(TaskManagerContext.connectionString);
             var user = (from u in db.Users where u.Id == this.UserId select u.Name).FirstOrDefault();
             return user;
+        }
+
+        private string GetTask()
+        {
+            using TaskManagerContext db = new(TaskManagerContext.connectionString);
+            var task = (from t in db.Tasks where t.Id == this.TaskId select t.Name).FirstOrDefault();
+            return task;
         }
 
     }

@@ -9,7 +9,7 @@
     <Grid>
         <Border Padding="10">
             <StackPanel>
-             <TextBlock Text="Task name:"></TextBlock>
+            <TextBlock Text="Task name:"></TextBlock>
             <TextBox x:Name="tbxTaskName" MaxLength="100" IsEnabled="True"></TextBox>
             <TextBlock Text="Author:"></TextBlock>
             <TextBox x:Name="tbxAuthor" IsEnabled="False"></TextBox>

@@ -95,5 +95,21 @@ namespace TaskManager
                 }
             }
         }
+
+        private void ViewComments_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgridTasks.SelectedItem != null)
+            {
+
+                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                    Task task = (Task)dgridTasks.SelectedItem;
+                    ViewCommentsWindow.taskId = task.Id;
+                    ViewCommentsWindow window = new();
+                    window.tbxId.Text = task.Id.ToString();
+                    window.tbxTaskName.Text = task.Name;
+                    window.ShowDialog();
+
+            }
+        }
     }
 }

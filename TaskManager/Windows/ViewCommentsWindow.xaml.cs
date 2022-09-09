@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager.Entities;
 
 namespace TaskManager.Windows
 {
@@ -19,9 +20,49 @@ namespace TaskManager.Windows
     /// </summary>
     public partial class ViewCommentsWindow : Window
     {
+
+        public static int taskId;
+
         public ViewCommentsWindow()
         {
             InitializeComponent();
+            dgridComments.ItemsSource = GetComments();
         }
+
+        private static List<Comment> GetComments()
+        {
+            List<Comment> comments = new();
+            using (TaskManagerContext db = new(TaskManagerContext.connectionString))
+            {
+                comments = (from comment in db.Comments where comment.TaskId == taskId select comment).ToList();
+            }
+            return comments;
+        }
+
+        private void DeleteComment_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgridComments.SelectedItem != null)
+            {
+                try
+                {
+                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                    Comment comment = (Comment)dgridComments.SelectedItem;
+                    db.Remove(comment);
+                    db.SaveChanges();
+                    dgridComments.ItemsSource = GetComments();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+
     }
 }

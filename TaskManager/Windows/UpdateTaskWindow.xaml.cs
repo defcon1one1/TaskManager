@@ -46,17 +46,20 @@ namespace TaskManager.Windows
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!String.IsNullOrEmpty(tbxTaskName.Text))
             {
-                using TaskManagerContext db = new(TaskManagerContext.connectionString);
-                var task = (from t in db.Tasks where t.Id == Int32.Parse(tbxId.Text) select t).FirstOrDefault();
-                task.Name = tbxTaskName.Text;
-                task.StatusId = cmbStatus.SelectedIndex;
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Invalid input");
+                try
+                {
+                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                    var task = (from t in db.Tasks where t.Id == Int32.Parse(tbxId.Text) select t).FirstOrDefault();
+                    task.Name = tbxTaskName.Text;
+                    task.StatusId = cmbStatus.SelectedIndex;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid input");
+                }
             }
             Close();
         }
