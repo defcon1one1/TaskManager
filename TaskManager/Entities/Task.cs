@@ -10,10 +10,11 @@ namespace TaskManager.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Priority { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime DateCreated { get; set; }
         public int StatusId { get; set; }
+        public int UserId { get; set; }
         public string Status { get => GetStatus(); }
+        public string AddedBy { get => GetUser(); }
 
         private string GetStatus()
         {
@@ -21,6 +22,15 @@ namespace TaskManager.Entities
             {
                 var status = (from s in db.Statuses where Id == this.StatusId select s.Name).FirstOrDefault();
                 return status;
+            }
+        }
+
+        private string GetUser()
+        {
+            using (TaskManagerContext db = new TaskManagerContext(TaskManagerContext.connectionString))
+            {
+                var user = (from s in db.Users where Id == this.UserId select s.Name).FirstOrDefault();
+                return user;
             }
         }
     }

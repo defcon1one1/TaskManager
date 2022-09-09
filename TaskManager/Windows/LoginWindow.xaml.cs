@@ -28,7 +28,8 @@ namespace TaskManager
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection loginConnection = new SqlConnection(TasksManagerContext.connectionString);
+            MainWindow.user = tbxUser.Text;
+            SqlConnection loginConnection = new SqlConnection(TaskManagerContext.connectionString);
             try
             {
                 if (loginConnection.State == System.Data.ConnectionState.Closed)

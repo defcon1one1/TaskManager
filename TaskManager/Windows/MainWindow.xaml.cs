@@ -20,9 +20,13 @@ namespace TaskManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string user;
+
         public MainWindow()
         {
+
             InitializeComponent();
+            LoggedUser.Text = user;
         }
     }
 }

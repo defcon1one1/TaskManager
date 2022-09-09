@@ -19,7 +19,7 @@ namespace TaskManager.Entities
         {
             using (TaskManagerContext db = new TaskManagerContext(TaskManagerContext.connectionString))
             {
-                var user = (from u in db.Statuses where Id == this.UserId select u.Name).FirstOrDefault();
+                var user = (from u in db.Users where Id == this.UserId select u.Name).FirstOrDefault();
                 return user;
             }
         }
