@@ -14,7 +14,7 @@ namespace TaskManager.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// this property represents column TaskId in mysql database
+        /// this property represents column TaskId in mysql database which is also foreign key reference to table Tasks.Id
         /// </summary>
         public int TaskId { get; set; }
 
@@ -34,7 +34,7 @@ namespace TaskManager.Entities
         public DateTime DateAdded { get; set; }
 
         /// <summary>
-        /// this property represents column UserId in mysql database
+        /// this property represents column UserId in mysql database which is also foreign key reference to table Users.Id
         /// </summary>
         public int UserId { get; set; }
 
