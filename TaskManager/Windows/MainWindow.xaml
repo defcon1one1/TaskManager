@@ -31,7 +31,14 @@
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding AddedBy}" Header="Created by" Width="175"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Status}" Header="Status" Width="125"></DataGridTextColumn>
             </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="View comments" Click="ViewComments_Click"></MenuItem>
+                        <MenuItem Header="Update task" Click="UpdateTask_Click"></MenuItem>
+                        <MenuItem Header="Delete task" Click="DeleteTask_Click"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
 
     </Grid>
     </Border>

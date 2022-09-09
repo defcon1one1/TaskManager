@@ -69,6 +69,12 @@ namespace TaskManager
                 {
                     using TaskManagerContext db = new(TaskManagerContext.connectionString);
                     Task task = (Task)dgridTasks.SelectedItem;
+                    var comments = (from comment in db.Comments where comment.TaskId == task.Id select comment).ToList();
+
+                    for (int i = 0; i < comments.Count; i++) // first delete the comments due to foreign key constraint
+                    {
+                        db.Remove(comments[i]);
+                    }
                     db.Remove(task);
                     db.SaveChanges();
                     dgridTasks.ItemsSource = GetTasks();
@@ -109,13 +115,13 @@ namespace TaskManager
             if (dgridTasks.SelectedItem != null)
             {
 
-                    using TaskManagerContext db = new(TaskManagerContext.connectionString);
-                    Task task = (Task)dgridTasks.SelectedItem;
-                    ViewCommentsWindow.TaskId = task.Id;
-                    ViewCommentsWindow window = new();
-                    window.tbxId.Text = task.Id.ToString();
-                    window.tbxTaskName.Text = task.Name;
-                    window.ShowDialog();
+                using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                Task task = (Task)dgridTasks.SelectedItem;
+                ViewCommentsWindow.TaskId = task.Id;
+                ViewCommentsWindow window = new();
+                window.tbxId.Text = task.Id.ToString();
+                window.tbxTaskName.Text = task.Name;
+                window.ShowDialog();
 
             }
         }
