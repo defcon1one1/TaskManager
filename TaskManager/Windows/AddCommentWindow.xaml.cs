@@ -21,6 +21,9 @@ namespace TaskManager.Windows
     /// </summary>
     public partial class AddCommentWindow : Window
     {
+        /// <summary>
+        /// Constructor for <c>AddCommentWindow</c>
+        /// </summary>
         public AddCommentWindow()
         {
             InitializeComponent();

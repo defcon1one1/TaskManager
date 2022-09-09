@@ -25,6 +25,10 @@ namespace TaskManager
     {
         private static string user = "unknown";
 
+
+        /// <summary>
+        /// Constructor for <c>MainWindow</c>
+        /// </summary>
         public MainWindow()
         {
 
@@ -32,6 +36,10 @@ namespace TaskManager
             LoggedUser.Text = User;
             dgridTasks.ItemsSource = GetTasks();
         }
+
+        /// <summary>
+        /// Property containing currently logged user
+        /// </summary>
 
         public static string User { get => user; set => user = value; }
 
@@ -103,7 +111,7 @@ namespace TaskManager
 
                     using TaskManagerContext db = new(TaskManagerContext.connectionString);
                     Task task = (Task)dgridTasks.SelectedItem;
-                    ViewCommentsWindow.taskId = task.Id;
+                    ViewCommentsWindow.TaskId = task.Id;
                     ViewCommentsWindow window = new();
                     window.tbxId.Text = task.Id.ToString();
                     window.tbxTaskName.Text = task.Name;

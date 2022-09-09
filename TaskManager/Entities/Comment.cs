@@ -8,12 +8,39 @@ namespace TaskManager.Entities
 {
     internal class Comment
     {
+        /// <summary>
+        /// this property represents column Id in mysql database
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// this property represents column TaskId in mysql database
+        /// </summary>
         public int TaskId { get; set; }
+
+        /// <summary>
+        /// property returns task name from table Tasks based on TaskId
+        /// </summary>
         public string Task { get => GetTask(); }
+
+        /// <summary>
+        /// this property represents column Contents in mysql database
+        /// </summary>
         public string Contents { get; set; }
+
+        /// <summary>
+        /// this property represents column DateAdded in mysql database
+        /// </summary>
         public DateTime DateAdded { get; set; }
+
+        /// <summary>
+        /// this property represents column UserId in mysql database
+        /// </summary>
         public int UserId { get; set; }
+
+        /// <summary>
+        /// property returns user name from table Users based on UserId
+        /// </summary>
         public string User { get => GetUser(); }
 
         private string GetUser()

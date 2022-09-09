@@ -21,7 +21,17 @@ namespace TaskManager.Windows
     public partial class ViewCommentsWindow : Window
     {
 
-        public static int taskId;
+        private static int taskId;
+
+        /// <summary>
+        /// Property containing task id 
+        /// </summary>
+
+        public static int TaskId { get => taskId; set => taskId = value; }
+
+        /// <summary>
+        /// Constructor for <c>ViewCommentsWindow</c>
+        /// </summary>
 
         public ViewCommentsWindow()
         {
@@ -34,7 +44,7 @@ namespace TaskManager.Windows
             List<Comment> comments = new();
             using (TaskManagerContext db = new(TaskManagerContext.connectionString))
             {
-                comments = (from comment in db.Comments where comment.TaskId == taskId select comment).ToList();
+                comments = (from comment in db.Comments where comment.TaskId == TaskId select comment).ToList();
             }
             return comments;
         }

@@ -20,6 +20,10 @@ namespace TaskManager.Windows
     /// </summary>
     public partial class UpdateTaskWindow : Window
     {
+
+        /// <summary>
+        /// Constructor for <c>UpdateTaskWindow</c>
+        /// </summary>
         public UpdateTaskWindow()
         {
             InitializeComponent();
@@ -60,8 +64,9 @@ namespace TaskManager.Windows
                 {
                     MessageBox.Show("Invalid input");
                 }
+                Close();
             }
-            Close();
+
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
