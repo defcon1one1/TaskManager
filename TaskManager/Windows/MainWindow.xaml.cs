@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Windows;
 
 namespace TaskManager
 {
@@ -27,6 +28,12 @@ namespace TaskManager
 
             InitializeComponent();
             LoggedUser.Text = user;
+        }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            AddTaskWindow addTaskWindow = new AddTaskWindow();
+            addTaskWindow.ShowDialog();
         }
     }
 }

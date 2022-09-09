@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock VerticalAlignment="Bottom" Margin="10 0 0 0" FontFamily="Helvetica" Text="Open tasks:" FontSize="25"></TextBlock>
-        <Button Width="85" Height="25" Margin="10 10 0 0" FontFamily="Helvetica" Content="Add task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+        <Button Click="AddTask_Click" Width="85" Height="25" Margin="10 10 0 0" FontFamily="Helvetica" Content="Add task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <Button Width="85" Height="25" Margin="110 10 0 0" FontFamily="Helvetica" Content="Delete task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <Button Width="85" Height="25" Margin="210 10 0 0" FontFamily="Helvetica" Content="Update task" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
         <Button Width="85" Height="25" Margin="310 10 0 0" FontFamily="Helvetica" Content="Add comment" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
