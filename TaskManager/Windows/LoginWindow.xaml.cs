@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager.Entities;
 
 namespace TaskManager
 {
@@ -37,7 +38,7 @@ namespace TaskManager
                 SqlCommand sqlCmd = new SqlCommand(query, loginConnection);
 
                 sqlCmd.CommandType = System.Data.CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@Username", tbxUser.Text);
+                sqlCmd.Parameters.AddWithValue("@Name", tbxUser.Text);
                 sqlCmd.Parameters.AddWithValue("@Password", pbxPassword.Password);
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
 
