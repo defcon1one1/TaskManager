@@ -85,6 +85,7 @@ namespace TaskManager
                     window.tbxTaskName.Text = task.Name;
                     window.cmbStatus.SelectedIndex = task.StatusId;
                     window.tbxAuthor.Text = (from u in db.Users where u.Id == task.UserId select u.Name).FirstOrDefault();
+                    window.tbxCreated.Text = task.DateCreated.ToString("dd-MM-yyyy");
                     window.ShowDialog();
                     dgridTasks.ItemsSource = GetTasks();
                 }

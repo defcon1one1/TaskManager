@@ -38,20 +38,21 @@ namespace TaskManager.Windows
 
         private void AddComment_Click(object sender, RoutedEventArgs e)
         {
-
+            AddCommentWindow window = new();
+            window.tbxId.Text = tbxId.Text;
+            window.tbxTaskName.Text = tbxTaskName.Text;
+            window.ShowDialog();
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (TaskManagerContext db = new(TaskManagerContext.connectionString))
-                {
-                    var task = (from t in db.Tasks where t.Id == Int32.Parse(tbxId.Text) select t).FirstOrDefault();
-                    task.Name = tbxTaskName.Text;
-                    task.StatusId = cmbStatus.SelectedIndex;
-                    db.SaveChanges();
-                }
+                using TaskManagerContext db = new(TaskManagerContext.connectionString);
+                var task = (from t in db.Tasks where t.Id == Int32.Parse(tbxId.Text) select t).FirstOrDefault();
+                task.Name = tbxTaskName.Text;
+                task.StatusId = cmbStatus.SelectedIndex;
+                db.SaveChanges();
             }
             catch (Exception ex)
             {

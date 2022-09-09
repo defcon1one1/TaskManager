@@ -27,8 +27,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Id}" Header="Id" Width="65"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Name" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding DateCreated, StringFormat=\{0:dd-MM-yyyy\}}" Header="Created" Width="125"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding AddedBy}" Header="Added by" Width="125"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding DateCreated, StringFormat=\{0:dd-MM-yyyy\}}" Header="Date" Width="125"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding AddedBy}" Header="Created by" Width="175"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Status}" Header="Status" Width="125"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager.Windows"
         mc:Ignorable="d"
-        Title="Update task" Height="300" Width="400">
+        Title="Update task" Height="330" Width="400">
     <Border Padding="10">
         <Grid>
             <StackPanel>
@@ -18,6 +18,8 @@
                 <Button Margin="0 10 0 0" Click="AddComment_Click" Content="Add comment"></Button>
                 <TextBlock Text="Author:"></TextBlock>
                 <TextBox x:Name="tbxAuthor" IsEnabled="False"></TextBox>
+                <TextBlock Text="Created:"></TextBlock>
+                <TextBox x:Name="tbxCreated" IsEnabled="False"></TextBox>
                 <Button Margin="0 10 0 0" Click="Update_Click" Content="Update"></Button>
                 <Button Margin="0 10 0 0" Click="Cancel_Click" Content="Cancel"></Button>
             </StackPanel>
