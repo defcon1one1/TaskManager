@@ -5,16 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager.Windows"
         mc:Ignorable="d"
-        Title="Add task" Height="220" Width="400">
+        Title="Add task" Height="180" Width="400">
     <Grid>
         <Border Padding="10">
-        <StackPanel>
-            <TextBlock Text="Id:"></TextBlock>
-            <TextBox x:Name="tbxId" IsEnabled="False"></TextBox>
-            <TextBlock Text="Task name:"></TextBlock>
+            <StackPanel>
+             <TextBlock Text="Task name:"></TextBlock>
             <TextBox x:Name="tbxTaskName" MaxLength="100" IsEnabled="True"></TextBox>
             <TextBlock Text="Author:"></TextBlock>
-            <TextBox x:Name="Author" IsEnabled="False"></TextBox>
+            <TextBox x:Name="tbxAuthor" IsEnabled="False"></TextBox>
             <Button Margin="0 5 0 0" Click="Add_Click" Content="Add"></Button>
             <Button Margin="0 5 0 0" Click="Cancel_Click" Content="Cancel"></Button>
         </StackPanel>

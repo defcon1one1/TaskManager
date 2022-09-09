@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager.Entities;
+using Task = TaskManager.Entities.Task;
 
 namespace TaskManager.Windows
 {
@@ -26,12 +28,33 @@ namespace TaskManager.Windows
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            using TaskManagerContext db = new(TaskManagerContext.connectionString);
+            if (!String.IsNullOrWhiteSpace(tbxTaskName.Text))
+            {
+                try
+                {
+                    Task task = new()
+                    {
+                        Name = tbxTaskName.Text,
+                        StatusId = 1,
+                        DateCreated = DateTime.Today,
+                        UserId = (from u in db.Users where u.Name == tbxAuthor.Text select u.Id).FirstOrDefault()
+                    };
+                    db.Add(task);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+                this.Close();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
     }

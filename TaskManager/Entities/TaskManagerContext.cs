@@ -17,5 +17,10 @@ namespace TaskManager.Entities
             this.ConnectionString = connectionString;
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(this.ConnectionString);
+        }
+
     }
 }

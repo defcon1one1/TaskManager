@@ -18,20 +18,16 @@ namespace TaskManager.Entities
 
         private string GetStatus()
         {
-            using (TaskManagerContext db = new TaskManagerContext(TaskManagerContext.connectionString))
-            {
-                var status = (from s in db.Statuses where Id == this.StatusId select s.Name).FirstOrDefault();
-                return status;
-            }
+            using TaskManagerContext db = new(TaskManagerContext.connectionString);
+            var status = (from s in db.Statuses where Id == this.StatusId select s.Name).FirstOrDefault();
+            return status;
         }
 
         private string GetUser()
         {
-            using (TaskManagerContext db = new TaskManagerContext(TaskManagerContext.connectionString))
-            {
-                var user = (from s in db.Users where Id == this.UserId select s.Name).FirstOrDefault();
-                return user;
-            }
+            using TaskManagerContext db = new(TaskManagerContext.connectionString);
+            var user = (from u in db.Users where u.Id == this.UserId select u.Name).FirstOrDefault();
+            return user;
         }
     }
 }

@@ -28,7 +28,6 @@ namespace TaskManager
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.user = tbxUser.Text;
             SqlConnection loginConnection = new SqlConnection(TaskManagerContext.connectionString);
             try
             {
@@ -45,7 +44,9 @@ namespace TaskManager
 
                 if (count == 1)
                 {
+                    MainWindow.user = tbxUser.Text;
                     MainWindow dashboard = new MainWindow();
+
                     dashboard.Show();
                     this.Close();
                 }

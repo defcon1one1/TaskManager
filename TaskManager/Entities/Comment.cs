@@ -17,11 +17,9 @@ namespace TaskManager.Entities
 
         private string GetUser()
         {
-            using (TaskManagerContext db = new TaskManagerContext(TaskManagerContext.connectionString))
-            {
-                var user = (from u in db.Users where Id == this.UserId select u.Name).FirstOrDefault();
-                return user;
-            }
+            using TaskManagerContext db = new(TaskManagerContext.connectionString);
+            var user = (from u in db.Users where Id == this.UserId select u.Name).FirstOrDefault();
+            return user;
         }
 
     }

@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Entities;
 using TaskManager.Windows;
+using Task = TaskManager.Entities.Task;
 
 namespace TaskManager
 {
@@ -21,19 +23,53 @@ namespace TaskManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string user;
+        public static string user = "unknown";
 
         public MainWindow()
         {
 
             InitializeComponent();
             LoggedUser.Text = user;
+            dgridTasks.ItemsSource = GetTasks();
+        }
+
+        private List<Task> GetTasks()
+        {
+            List<Task> tasks = new();
+            using (TaskManagerContext db = new(TaskManagerContext.connectionString))
+            {
+                tasks = (from task in db.Tasks select task).ToList();
+            }
+            return tasks;
         }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            AddTaskWindow addTaskWindow = new AddTaskWindow();
+            AddTaskWindow addTaskWindow = new();
+            addTaskWindow.tbxAuthor.Text = user;
             addTaskWindow.ShowDialog();
+            dgridTasks.ItemsSource = GetTasks();
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgridTasks.SelectedItem != null)
+            {
+                try
+                {
+                    using (TaskManagerContext db = new(TaskManagerContext.connectionString))
+                    {
+                        Task task = (Task)dgridTasks.SelectedItem;
+                        db.Remove(task);
+                        db.SaveChanges();
+                        dgridTasks.ItemsSource = GetTasks();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
