@@ -10,7 +10,6 @@ TaskManager is a simple WPF application designed for CRUD operations
 - WPF
 - SQL Server Express 2019
 ## How to install
-Boxrec is built on top of:
 1. Run database script: \TaskManager_db.sql
 2. Run .msi installer from file .\TaskManagerSetup\Debug\TaskManagerSetup.msi
 3. Run the application
